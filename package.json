@@ -8,8 +8,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
+    "cookies": "^0.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.6",
+    "mongoose-field-encryption": "^4.0.2",
     "next": "11.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-redux": "^7.2.5",
+    "redux": "^4.1.1",
+    "validator": "^13.6.0"
   }
 }

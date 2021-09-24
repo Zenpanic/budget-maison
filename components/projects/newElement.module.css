@@ -1,0 +1,19 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1em 0.5em;
+}
+
+.formElement {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.2em;
+    flex: 1;
+    width: 100%;
+}
+
+.formLabel {
+    margin-right: 1em;
+}
