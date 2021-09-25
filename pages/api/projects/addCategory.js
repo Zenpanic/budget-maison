@@ -1,5 +1,5 @@
 import verifyToken from '../../../utilsApi/authentication/verifyToken';
-import addElement from '../../../utilsApi/projects/addElement';
+import addCategory from '../../../utilsApi/projects/addCategory';
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
@@ -8,10 +8,10 @@ const handler = async (req, res) => {
         const token = verifyToken(req.headers.authorization, 'accessToken');
         if (!token.id) return res.status(400).json({ message: 'error' });
 
-        const { element } = req.body;
-        if (!element) return res.status(400).json({ message: 'error' });
+        const { newName, projectId } = req.body;
+        if (!newName || !projectId) return res.status(400).json({ message: 'error' });
 
-        const project = await addElement({ element, userId: token.id });
+        const project = await addCategory({ newName: newName, userId: token.id, projectId: projectId });
 
         if (!project) return res.status(400).json({ message: 'error' });
 

@@ -8,8 +8,6 @@ const createUser = async ({
     password,
 }) => {
 
-    console.log(username, email, password)
-
     if (!username || !password || !email) return ({ message: 'missing_fields' });
 
     const clone = await User.findOne({ $or: [{ email: email }, { username: username }] });

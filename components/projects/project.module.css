@@ -8,3 +8,23 @@
     text-align: center;
     text-transform: capitalize;
 }
+
+.addButton {
+    padding: 0.5em 1.2em;
+    cursor: pointer;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0.5em;
+}
+
+.formContainer > * {
+    margin: 0.2em 0;
+}
+
+.formLabel {
+    margin-right: 1em;
+}

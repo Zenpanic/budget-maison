@@ -2,12 +2,12 @@ import connectDB from '../../middleware/mongodb';
 
 import Project from '../../models/Project';
 
-const updateElement = async (element) => {
+const updateElement = async ({ element, userId }) => {
 
     if (!element) return false;
 
     const project = await Project.findOne({ _id: element.projectId });
-    if (!project) return false;
+    if (!project || project.user !== userId) return false;
 
     const elementIndex = project.elements.findIndex(item => {
         return item.id === element.id;

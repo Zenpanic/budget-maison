@@ -95,7 +95,7 @@ const NewElement = ({ category, projectId, element, hideForm, resetView }) => {
                     onChange={(e) => setNewElement({ ...newElement, source: e.target.value })}
                 />
             </div>
-            <div className={styles.formElement}>
+            <div className={styles.formButtonContainer}>
                 <button className={styles.saveButton} onClick={element ? updateElement : addElement}>{element ? 'Modifier' : 'Sauvegarder'}</button>
             </div>
         </div>

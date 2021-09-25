@@ -92,6 +92,70 @@ export const updateElementAsync = createAsyncThunk(
     }
 );
 
+export const renameCategoryAsync = createAsyncThunk(
+    'projects/renameCategoryAsync',
+    async payload => {
+        const { oldName, newName, projectId, accessToken } = payload;
+        const res = await fetch('/api/projects/renameCategory', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                "Content-type": "application/json;charset=UTF-8",
+                "Authorization": `Bearer ${accessToken}`
+            },
+            body: JSON.stringify({
+                oldName,
+                newName,
+                projectId
+            })
+        });
+        const project = await res.json();
+        return { project };
+    }
+);
+
+export const deleteCategoryAsync = createAsyncThunk(
+    'projects/deleteCategoryAsync',
+    async payload => {
+        const { projectId, category, accessToken } = payload;
+        const res = await fetch('/api/projects/deleteCategory', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                "Content-type": "application/json;charset=UTF-8",
+                "Authorization": `Bearer ${accessToken}`
+            },
+            body: JSON.stringify({
+                category,
+                projectId
+            })
+        });
+        const project = await res.json();
+        return { project };
+    }
+);
+
+export const addCategoryAsync = createAsyncThunk(
+    'projects/addCategoryAsync',
+    async payload => {
+        const { newName, projectId, accessToken } = payload;
+        const res = await fetch('/api/projects/addCategory', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                "Content-type": "application/json;charset=UTF-8",
+                "Authorization": `Bearer ${accessToken}`
+            },
+            body: JSON.stringify({
+                projectId,
+                newName
+            })
+        });
+        const project = await res.json();
+        return { project };
+    }
+);
+
 export const projectSlice = createSlice({
     name: 'projects',
     initialState: [],
@@ -116,6 +180,24 @@ export const projectSlice = createSlice({
             state[index] = { ...action.payload.project };
         },
         [deleteElementAsync.fulfilled]: (state, action) => {
+            const index = state.findIndex(project => {
+                return project._id === action.payload.project._id;
+            });
+            state[index] = { ...action.payload.project };
+        },
+        [renameCategoryAsync.fulfilled]: (state, action) => {
+            const index = state.findIndex(project => {
+                return project._id === action.payload.project._id;
+            });
+            state[index] = [...action.payload.project];
+        },
+        [deleteCategoryAsync.fulfilled]: (state, action) => {
+            const index = state.findIndex(project => {
+                return project._id === action.payload.project._id;
+            });
+            state[index] = { ...action.payload.project };
+        },
+        [addCategoryAsync.fulfilled]: (state, action) => {
             const index = state.findIndex(project => {
                 return project._id === action.payload.project._id;
             });

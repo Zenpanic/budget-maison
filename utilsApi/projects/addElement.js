@@ -2,10 +2,10 @@ import connectDB from '../../middleware/mongodb';
 
 import Project from '../../models/Project';
 
-const addElement = async (element) => {
+const addElement = async ({ element, userId }) => {
 
     const project = await Project.findOne({ _id: element.projectId });
-    if (!project) return false;
+    if (!project || project.user !== userId) return false;
 
     project.elements = [...project.elements, element];
 

@@ -9,7 +9,6 @@ const verifyToken = (authorization, type) => {
     let decoded;
 
     if (type === 'accessToken') {
-        console.log('auth', authorization)
         const headerArray = authorization.split(' ');
         token = headerArray[1];
         decoded = jwt.verify(token, ACCESS_TOKEN_SECRET);
